@@ -30,7 +30,7 @@ export default function Hero() {
 
 					<div>
 						<button
-							// onClick={scrollToLibrary}
+							onClick={scrollToLibrary}
 							className="bg-[#ccff00] hover:bg-[#b3e600] text-black font-bold px-6 py-3.5 rounded-full text-xs uppercase tracking-wider flex items-center gap-2 transition-all shadow-lg cursor-pointer"
 						>
 							<span>browse workout</span>
