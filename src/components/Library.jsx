@@ -1,22 +1,13 @@
 "use client";
-import { useState } from "react";
 import { useFit } from "@/context/FitContext";
 import Link from "next/link";
 import { Clock, Flame, Star, Loader2 } from "lucide-react";
 
 export default function Library() {
 	const { workouts, loading, fetchWorkouts } = useFit();
-	const [fetched, setFetched] = useState(false);
 
-	const handleFetch = async () => {
-		if (!fetched) {
-			await fetchWorkouts();
-			setFetched(true);
-		}
-	};
-
-	if (workouts.length === 0 && !loading && !fetched) {
-		handleFetch();
+	if (workouts.length === 0 && !loading) {
+		fetchWorkouts();
 	}
 
 	return (
@@ -26,21 +17,13 @@ export default function Library() {
 		>
 			<div className="flex items-center justify-between mb-8">
 				<div>
-					<h2 className="font-oswald text-3xl md:text-4xl font-bold uppercase tracking-wide text-white">
-						THE LIBRARY
+					<h2 className="font-oswald tracking-[-0.75] leading-9 text-3xl md:text-4xl font-bold uppercase  text-white">
+						The Library
 					</h2>
 					<p className="text-gray-400 text-sm mt-1">
 						Twelve lifts covering every major muscle group.
 					</p>
 				</div>
-				{workouts.length === 0 && !loading && (
-					<button
-						onClick={handleFetch}
-						className="bg-[#ccff00] text-black font-bold px-4 py-2 rounded-full text-xs uppercase tracking-wider hover:opacity-90"
-					>
-						Load Workouts
-					</button>
-				)}
 			</div>
 
 			{loading && (

@@ -34,13 +34,12 @@ export default function Hero() {
 							className="bg-[#ccff00] hover:bg-[#b3e600] text-black font-bold px-6 py-3.5 rounded-full text-xs uppercase tracking-wider flex items-center gap-2 transition-all shadow-lg cursor-pointer"
 						>
 							<span>browse workout</span>
-							<ArrowDown size={16} />
 						</button>
 					</div>
 				</div>
 
 				<div className="flex-1 flex justify-center lg:justify-end">
-					<div className="relative w-full max-w-[380px] h-[320px] sm:h-[380px]">
+					<div className="relative w-full max-w-95 h-80 sm:h-95">
 						<Image
 							src="/banner.png"
 							alt="Train with intent hero illustration"

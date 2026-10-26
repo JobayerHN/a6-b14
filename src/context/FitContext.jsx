@@ -17,7 +17,6 @@ export function FitProvider({ children }) {
 		try {
 			const res = await fetch(API_BASE);
 			const data = await res.json();
-
 			const list = Array.isArray(data) ? data : data.workouts || [];
 			setWorkouts(list);
 			setLoading(false);
@@ -56,6 +55,11 @@ export function FitProvider({ children }) {
 		toast.success("Removed from plan");
 	};
 
+	const removeFromSaved = (id) => {
+		setSavedList(savedList.filter((item) => item.id !== id));
+		toast.success("Removed from saved list");
+	};
+
 	return (
 		<FitContext.Provider
 			value={{
@@ -67,6 +71,7 @@ export function FitProvider({ children }) {
 				addToPlan,
 				saveForLater,
 				removeFromPlan,
+				removeFromSaved,
 			}}
 		>
 			{children}

@@ -1,13 +1,9 @@
-"use client";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 
 export default function Navbar({ planCount = 0, savedCount = 0 }) {
-	const pathname = usePathname();
-
 	return (
-		<header className="w-full bg-[#0a0c10] py-5 px-6 md:px-12">
+		<header className="w-full bg-[#0a0c10] py-5 px-6 md:px-12 border-b border-[#21262d] sticky top-0 z-50">
 			<div className="max-w-7xl mx-auto flex items-center justify-between">
 				<Link href="/" className="flex items-center gap-3 group">
 					<Image
@@ -25,21 +21,13 @@ export default function Navbar({ planCount = 0, savedCount = 0 }) {
 				<nav className="flex items-center gap-2">
 					<Link
 						href="/"
-						className={`px-5 py-1.5 rounded-full text-xs tracking-wider font-medium transition-all ${
-							pathname === "/"
-								? "bg-[#182500] text-[#ccff00]"
-								: "text-gray-400 hover:text-white"
-						}`}
+						className="px-5 py-1.5 rounded-full text-xs tracking-wider font-medium text-gray-300 hover:text-[#C2F800] hover:bg-[#182500]/50 transition-all"
 					>
 						Workouts
 					</Link>
 					<Link
 						href="/my-plan"
-						className={`px-5 py-1.5 rounded-full text-xs tracking-wider font-medium transition-all ${
-							pathname === "/my-plan"
-								? "bg-[#182500] text-[#ccff00]"
-								: "text-gray-400 hover:text-white"
-						}`}
+						className="px-5 py-1.5 rounded-full text-xs tracking-wider font-medium text-gray-300 hover:text-[#C2F800] hover:bg-[#182500]/50 transition-all"
 					>
 						My Plan
 					</Link>

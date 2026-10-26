@@ -1,18 +1,10 @@
 "use client";
+
 import { useState, use } from "react";
 import { useFit } from "@/context/FitContext";
 import { API_BASE } from "@/lib/api";
 import Link from "next/link";
-import {
-	ArrowLeft,
-	Plus,
-	Bookmark,
-	Star,
-	Clock,
-	Flame,
-	Dumbbell,
-} from "lucide-react";
-
+import { ArrowLeft, Plus, Bookmark, Star } from "lucide-react";
 export default function WorkoutDetail({ params }) {
 	const unwrappedParams = use(params);
 	const id = unwrappedParams.id;
@@ -166,29 +158,6 @@ export default function WorkoutDetail({ params }) {
 								</span>
 							</div>
 						</div>
-					</div>
-
-					<div className="space-y-3">
-						<h3 className="font-oswald text-lg font-bold text-white uppercase tracking-wider">
-							INSTRUCTIONS
-						</h3>
-						<ol className="space-y-2 text-xs text-gray-300">
-							{(
-								workout.instructions || [
-									"Lie on the bench with eyes under the bar and feet planted.",
-									"Unrack with locked elbows and lower the bar to mid-chest.",
-									"Press up in a slight arc until elbows lock without bounding.",
-									"Keep shoulder blades pinched and a natural arch in the back.",
-								]
-							).map((step, idx) => (
-								<li key={idx} className="flex gap-2">
-									<span className="text-[#ccff00] font-bold">
-										{idx + 1}.
-									</span>
-									<span>{step}</span>
-								</li>
-							))}
-						</ol>
 					</div>
 
 					<div className="flex flex-col sm:flex-row gap-4 pt-4">

@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { Clock, Flame, Star, Check, X, ChevronDown } from "lucide-react";
 
 export default function MyPlanPage() {
-	const { planList, savedList, removeFromPlan } = useFit();
+	const { planList, savedList, removeFromPlan, removeFromSaved } = useFit();
 	const [activeTab, setActiveTab] = useState("plan");
 	const [sortBy, setSortBy] = useState("duration");
 	const [completedIds, setCompletedIds] = useState([]);
@@ -50,8 +50,8 @@ export default function MyPlanPage() {
 				</p>
 			</div>
 
-			<div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-				<div className="bg-[#12161f] border border-[#21262d] rounded-2xl p-6">
+			<div className="bg-[#12161f] border border-[#21262d] rounded-2xl grid grid-cols-1 sm:grid-cols-3 mb-8 overflow-hidden">
+				<div className="p-6 sm:p-8">
 					<p className="text-gray-400 text-xs font-medium uppercase tracking-wider mb-2">
 						Exercises
 					</p>
@@ -59,7 +59,7 @@ export default function MyPlanPage() {
 						{totalExercises}
 					</p>
 				</div>
-				<div className="bg-[#12161f] border border-[#21262d] rounded-2xl p-6">
+				<div className="p-6 sm:p-8 border-t sm:border-t-0 sm:border-l border-[#21262d] relative">
 					<p className="text-gray-400 text-xs font-medium uppercase tracking-wider mb-2">
 						Minutes
 					</p>
@@ -67,7 +67,7 @@ export default function MyPlanPage() {
 						{totalMinutes}
 					</p>
 				</div>
-				<div className="bg-[#12161f] border border-[#21262d] rounded-2xl p-6">
+				<div className="p-6 sm:p-8 border-t sm:border-t-0 sm:border-l border-[#21262d] relative">
 					<p className="text-gray-400 text-xs font-medium uppercase tracking-wider mb-2">
 						Calories
 					</p>
@@ -113,10 +113,6 @@ export default function MyPlanPage() {
 							<option value="calories">Calories</option>
 							<option value="rating">Rating</option>
 						</select>
-						<ChevronDown
-							size={14}
-							className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
-						/>
 					</div>
 				</div>
 			</div>
@@ -235,9 +231,13 @@ export default function MyPlanPage() {
 									)}
 
 									<button
-										onClick={() =>
-											removeFromPlan(workout.id)
-										}
+										onClick={() => {
+											if (activeTab === "plan") {
+												removeFromPlan(workout.id);
+											} else {
+												removeFromSaved(workout.id);
+											}
+										}}
 										className="p-2 text-gray-400 hover:text-red-400 hover:bg-red-500/10 rounded-full transition-colors cursor-pointer"
 										title="Remove"
 									>

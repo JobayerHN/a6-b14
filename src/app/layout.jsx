@@ -17,10 +17,10 @@ export default function RootLayout({ children }) {
 				<link
 					rel="preconnect"
 					href="https://fonts.gstatic.com"
-					crossOrigin="anonymous"
+					crossorigin
 				/>
 				<link
-					href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap"
+					href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
 					rel="stylesheet"
 				/>
 			</head>
@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
 				<FitProvider>
 					<Toaster position="top-right" />
 					<NavbarWrapper />
-					<main className="flex-grow">{children}</main>
+					<main className="grow">{children}</main>
 					<Footer />
 				</FitProvider>
 			</body>
