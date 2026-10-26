@@ -38,8 +38,8 @@ export default function Hero() {
 					</div>
 				</div>
 
-				<div className="flex-1 flex justify-center lg:justify-end">
-					<div className="relative w-full max-w-95 h-80 sm:h-95">
+				<div className="w-full lg:flex-1 flex justify-center lg:justify-end">
+					<div className="relative w-full h-64 sm:h-80 lg:h-96 max-w-md">
 						<Image
 							src="/banner.png"
 							alt="Train with intent hero illustration"
