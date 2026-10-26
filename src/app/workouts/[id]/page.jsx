@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, use } from "react";
+import { useState, use, Suspense } from "react";
 import { useFit } from "@/context/FitContext";
 import { API_BASE } from "@/lib/api";
 import Link from "next/link";
 import { ArrowLeft, Plus, Bookmark, Star } from "lucide-react";
-export default function WorkoutDetail({ params }) {
+
+function WorkoutDetailContent({ params }) {
 	const unwrappedParams = use(params);
 	const id = unwrappedParams.id;
 
@@ -180,5 +181,19 @@ export default function WorkoutDetail({ params }) {
 				</div>
 			</div>
 		</div>
+	);
+}
+
+export default function WorkoutDetail({ params }) {
+	return (
+		<Suspense
+			fallback={
+				<div className="min-h-[60vh] flex items-center justify-center text-gray-400">
+					Loading workout details...
+				</div>
+			}
+		>
+			<WorkoutDetailContent params={params} />
+		</Suspense>
 	);
 }

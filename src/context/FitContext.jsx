@@ -8,25 +8,29 @@ const FitContext = createContext();
 export function FitProvider({ children }) {
 	const [workouts, setWorkouts] = useState([]);
 	const [loading, setLoading] = useState(false);
+	const [hasFetched, setHasFetched] = useState(false);
 	const [planList, setPlanList] = useState([]);
 	const [savedList, setSavedList] = useState([]);
 
-	const fetchWorkouts = async () => {
-		if (workouts.length > 0) return workouts;
+	const loadWorkouts = async () => {
+		if (hasFetched || loading) return;
 		setLoading(true);
+		setHasFetched(true);
 		try {
 			const res = await fetch(API_BASE);
 			const data = await res.json();
 			const list = Array.isArray(data) ? data : data.workouts || [];
 			setWorkouts(list);
-			setLoading(false);
-			return list;
 		} catch (error) {
 			toast.error("Failed to load workouts");
+		} finally {
 			setLoading(false);
-			return [];
 		}
 	};
+
+	if (workouts.length === 0 && !hasFetched && !loading) {
+		loadWorkouts();
+	}
 
 	const addToPlan = (workout) => {
 		if (planList.some((item) => item.id === workout.id)) {
@@ -65,7 +69,6 @@ export function FitProvider({ children }) {
 			value={{
 				workouts,
 				loading,
-				fetchWorkouts,
 				planList,
 				savedList,
 				addToPlan,
